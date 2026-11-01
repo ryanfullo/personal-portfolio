@@ -1,18 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Portfolio</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name – Web Developer</title>
+  <meta name="description" content="Portfolio of Your Name, UI/UX designer and web developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <h1>Welcome to My Portfolio!</h1>
+  <header class="site-header">
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav" aria-label="Main">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#interests">Interests</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
+  <main>
+    <section class="hero" id="home">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="word" aria-hidden="true">RYAN</div>
+
+      <!-- Your photo: images/profile.jpg (a cut-out PNG on a transparent background looks best) -->
+      <img class="photo" src="assets/images/profile.jpg" alt="Photo of Your Name" onerror="this.style.display='none'">
+
+      <div class="copy">
+        <p class="hi"><b>Hi</b> I'm</p>
+        <h1><span class="first">Jhon Ryan</span><span class="last">Fullo</span></h1>
+        <p class="bio">
+          I build clean, responsive websites with a focus on simple design and
+          good user experience. Replace this with one or two sentences about you.
+        </p>
+        <div class="buttons">
+          <a href="resume.pdf" download class="pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+            Download Resume
+          </a>
+          <a href="#projects" class="pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v11H4zM9 8V5h6v3"/></svg>
+            View Projects
+          </a>
+        </div>
+      </div>
+
+      <div class="roles">
+        <p class="role-top">UI/UX Designer</p>
+        <p class="role-main">Web<br>Developer</p>
+      </div>
+
+      <a href="#about" class="scroll" aria-label="Scroll down">
+        <i><b></b></i>
+        <span>Scroll down</span>
+      </a>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
