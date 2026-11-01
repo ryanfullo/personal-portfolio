@@ -35,7 +35,8 @@ a { color: inherit; text-decoration: none; }
 
 .word { position: absolute; z-index: 1; left: 50%; top: 52%; transform: translate(-50%, -50%); font-family: var(--head); font-weight: 800; font-size: clamp(5rem, 19vw, 17rem); letter-spacing: 0.02em; line-height: 1; color: rgba(255, 255, 255, 0.055); white-space: nowrap; user-select: none; }
 
-.photo { position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%); height: 94%; max-width: 70vw; object-fit: contain; object-position: center bottom;
+.photo-wrap { position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%); height: 94%; max-width: 70vw; }
+.photo { display: block; height: 100%; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; object-position: center bottom;
   -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 70%, transparent 100%); }
 
@@ -64,23 +65,35 @@ h1 span { display: block; }
 @keyframes dot { 0%, 100% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(8px); opacity: 0.2; } }
 
 /* ---------- Tablet & mobile ---------- */
+/* Order on phones: name on top, photo in the middle, description below */
 @media (max-width: 900px) {
-  .hero { display: block; min-height: 0; padding: 84px 24px 72px; }
-  .word { top: 26%; font-size: 21vw; }
+  .hero { display: flex; flex-direction: column; align-items: flex-start; text-align: left; min-height: 0; padding: 96px 24px 72px; }
+  .copy { display: contents; }
+  .hi, h1, .bio, .buttons, .roles { position: relative; z-index: 3; }
 
-  /* photo sits at the top, and the text slides up over its faded bottom edge */
-  .photo { position: relative; left: auto; top: auto; bottom: auto; transform: none; display: block;
-    width: auto; max-width: 100%; height: 52vh; max-height: 460px; margin: 0 auto -80px;
-    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); }
+  .hi { order: 1; }
+  h1 { order: 2; margin: 2px 0 0; }
+  .glow, .word { display: none; }
 
-  .copy { max-width: none; }
-  .roles { position: relative; right: auto; bottom: auto; text-align: left; margin-top: 36px; }
+  /* The glow and the PORTFOLIO word are tied to the photo, so they always line up with it.
+     Tune the numbers below: glow width, glow height, glow vertical position, and the word's vertical position. */
+  .photo-wrap { --glow-w: 98vw; --glow-h: 88vw; --glow-y: 54%; --word-y: 38%;
+    order: 3; position: relative; left: auto; bottom: auto; transform: none; width: 100%; height: 50vh; max-height: 440px; align-self: center; margin: -6px auto -56px; }
+  .photo-wrap::before { content: ""; position: absolute; z-index: -1; left: 50%; top: var(--glow-y); width: var(--glow-w); height: var(--glow-h); transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse closest-side, rgba(43, 92, 255, 0.5), rgba(43, 92, 255, 0.2) 60%, transparent 100%); }
+  .photo-wrap::after { content: "PORTFOLIO"; position: absolute; z-index: -1; left: 50%; top: var(--word-y); transform: translate(-50%, -50%);
+    font-family: var(--head); font-weight: 800; font-size: 15vw; line-height: 1; letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.07); white-space: nowrap; }
+  .photo { -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%); }
+  .bio { order: 4; margin: 0 0 24px; }
+  .buttons { order: 5; justify-content: flex-start; }
+  .roles { order: 6; right: auto; bottom: auto; text-align: left; margin-top: 36px; }
+
   .scroll { display: none; }
 
   .site-header { justify-content: flex-end; }
   .nav-toggle { display: block; }
-  .site-header nav { position: absolute; top: 64px; right: 5vw; flex-direction: column; gap: 0; background: rgba(10, 12, 20, 0.96); border: 1px solid var(--line); border-radius: 14px; padding: 8px; display: none; min-width: 180px; }
+  .site-header nav { position: absolute; top: 64px; right: 5vw; flex-direction: column; gap: 0; background: rgba(10, 12, 20, 0.96); border: 1px solid var(--line); border-radius: 14px; padding: 8px; display: none; min-width: 180px; text-align: left; }
   .site-header nav.open { display: flex; }
   .site-header nav a { padding: 12px 16px; }
 }
