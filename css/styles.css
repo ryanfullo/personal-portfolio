@@ -75,14 +75,13 @@ h1 span { display: block; }
   h1 { order: 2; margin: 2px 0 0; }
   .glow, .word { display: none; }
 
-  /* The glow and the PORTFOLIO word are tied to the photo, so they always line up with it.
-     Tune the numbers below: glow width, glow height, glow vertical position, and the word's vertical position. */
-  .photo-wrap { --glow-w: 98vw; --glow-h: 88vw; --glow-y: 54%; --word-y: 38%;
-    order: 3; position: relative; left: auto; bottom: auto; transform: none; width: 100%; height: 50vh; max-height: 440px; align-self: center; margin: -6px auto -56px; }
-  .photo-wrap::before { content: ""; position: absolute; z-index: -1; left: 50%; top: var(--glow-y); width: var(--glow-w); height: var(--glow-h); transform: translate(-50%, -50%);
+  /* The glow is tied to the photo, so it always lines up with it.
+     --glow-x moves it left/right, --glow-y up/down, --glow-w and --glow-h set its size.
+     top (on .photo-wrap) moves the photo and the glow up or down together. */
+  .photo-wrap { --glow-w: 98vw; --glow-h: 88vw; --glow-x: 0vw; --glow-y: 54%;
+    order: 3; position: relative; top: -32px; left: auto; bottom: auto; transform: none; width: 100%; height: 50vh; max-height: 440px; align-self: center; margin: -6px auto -56px; }
+  .photo-wrap::before { content: ""; position: absolute; z-index: -1; left: calc(50% + var(--glow-x)); top: var(--glow-y); width: var(--glow-w); height: var(--glow-h); transform: translate(-50%, -50%);
     background: radial-gradient(ellipse closest-side, rgba(43, 92, 255, 0.5), rgba(43, 92, 255, 0.2) 60%, transparent 100%); }
-  .photo-wrap::after { content: "PORTFOLIO"; position: absolute; z-index: -1; left: 50%; top: var(--word-y); transform: translate(-50%, -50%);
-    font-family: var(--head); font-weight: 800; font-size: 15vw; line-height: 1; letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.07); white-space: nowrap; }
   .photo { -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 60%, transparent 100%); }
   .bio { order: 4; margin: 0 0 24px; }
